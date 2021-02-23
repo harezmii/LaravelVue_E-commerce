@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
-        return view('layout.frontend.index',["categories"=>Category::all()]);
+        return view("welcome",["categories"=>Category::all()]);
+        //return view('layout.frontend.index',["categories"=>Category::all()]);
     }
+
 }

@@ -429,7 +429,6 @@
     <!-- /section -->		<!-- /row -->
 </div>
 <!-- /container -->
-</div>
 <!-- /section -->
 
 <!-- section -->
@@ -860,3 +859,4 @@
     <!-- /container -->
 </div>
 <!-- /section -->
+</div>
