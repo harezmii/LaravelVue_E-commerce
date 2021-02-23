@@ -49,8 +49,8 @@
                     <!-- Search -->
                     <div class="header-search">
                         <form>
-                            <input v-model="search" class="input search-input" type="text" placeholder="Enter your keyword">
-                            <button @click="searchApi"  class="search-btn"><i class="fa fa-search"></i></button>
+                            <input v-model="search" @input="searching" class="input search-input" type="text" placeholder="Enter your keyword">
+                            <button   class="search-btn"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                     <!-- /Search -->
@@ -147,11 +147,18 @@ export default {
           image_product_1 : "assets/img/thumb-product01.jpg",
 
           search : "",
+          searchResponse : []
       }
     },
     methods : {
-        searchApi(){
-            console.log("Aranan kelime :"+this.search);
+        searching(){
+            if (this.search.length>2)
+            {
+                axios
+                    .get("http://localhost:8000/api/search?searchTerm="+this.search)
+                    .then(response => this.searchResponse = response)
+            }
+
         }
     }
 }

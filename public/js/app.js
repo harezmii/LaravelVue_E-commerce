@@ -2509,12 +2509,19 @@ __webpack_require__.r(__webpack_exports__);
     return {
       image_logo: "assets/img/logo.png",
       image_product_1: "assets/img/thumb-product01.jpg",
-      search: ""
+      search: "",
+      searchResponse: []
     };
   },
   methods: {
-    searchApi: function searchApi() {
-      console.log("Aranan kelime :" + this.search);
+    searching: function searching() {
+      var _this = this;
+
+      if (this.search.length > 2) {
+        axios.get("http://localhost:8000/api/search?searchTerm=" + this.search).then(function (response) {
+          return _this.searchResponse = response;
+        });
+      }
     }
   }
 });
@@ -41011,30 +41018,29 @@ var render = function() {
                 attrs: { type: "text", placeholder: "Enter your keyword" },
                 domProps: { value: _vm.search },
                 on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.search = $event.target.value
-                  }
+                  input: [
+                    function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.search = $event.target.value
+                    },
+                    _vm.searching
+                  ]
                 }
               }),
               _vm._v(" "),
-              _c(
-                "button",
-                { staticClass: "search-btn", on: { click: _vm.searchApi } },
-                [_c("i", { staticClass: "fa fa-search" })]
-              )
+              _vm._m(1)
             ])
           ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "pull-right" }, [
           _c("ul", { staticClass: "header-btns" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("li", { staticClass: "header-cart dropdown default-dropdown" }, [
-              _vm._m(2),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "custom-menu" }, [
                 _c("div", { attrs: { id: "shopping-cart" } }, [
@@ -41046,9 +41052,9 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(3),
+                      _vm._m(4),
                       _vm._v(" "),
-                      _vm._m(4)
+                      _vm._m(5)
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "product product-widget" }, [
@@ -41058,18 +41064,18 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _vm._m(5),
+                      _vm._m(6),
                       _vm._v(" "),
-                      _vm._m(6)
+                      _vm._m(7)
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(7)
+                  _vm._m(8)
                 ])
               ])
             ]),
             _vm._v(" "),
-            _vm._m(8)
+            _vm._m(9)
           ])
         ])
       ])
@@ -41149,6 +41155,14 @@ var staticRenderFns = [
           ])
         ])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("button", { staticClass: "search-btn" }, [
+      _c("i", { staticClass: "fa fa-search" })
     ])
   },
   function() {
