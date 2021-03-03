@@ -1,12 +1,12 @@
 <template>
             <footer id="footer" class="section section-grey">
-                <div class="container">
+                <div class="container" >
                     <div class="row">
                         <div class="col-md-3 col-sm-6 col-xs-6">
                             <div class="footer">
                                 <div class="footer-logo">
                                     <a class="logo" href="#">
-                                        <img :src="image_logo" alt="">
+                                        <img @click="divolte" :src="image_logo" alt="">
                                     </a>
                                 </div>
 
@@ -77,6 +77,12 @@ export default {
           image_logo : "assets/img/logo.png"
       }
     },
+    methods : {
+        divolte(){
+          divolte.signal('event',{"title": "click start","type":"iyi"});
+          console.log("test deneme");
+        },
+    }
 }
 </script>
 
